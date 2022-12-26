@@ -12,7 +12,7 @@
       root.left.right = new TreeNode(4);
 
       Solution s = new Solution();
-      s.Flatten(root);
+      s.Flatten_Iterative(root);
     }
   }
 
@@ -60,6 +60,28 @@
         return last;
       }
       DFS(root);
+    }
+    // Easy to understand 
+    public void Flatten_Iterative(TreeNode root)
+    {
+      TreeNode cur = root;
+      while (cur != null) 
+      {
+        if(cur.left != null)
+        {
+          var last = cur.left;
+          while (last.right != null)
+          {
+            last.right = cur.right;
+            cur.right = cur.left;
+            cur.left = null;
+          }
+        }
+        else
+        {
+          cur = cur.right;
+        }
+      }
     }
   }
 }
